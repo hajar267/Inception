@@ -6,17 +6,23 @@
 # by what i want the prototype
 #sed -i 's/old_text/new_text/' file.txt
 
+sed -i 's|listen = /run/php/php8.2-fpm.sock|listen = 9000|' /etc/php/8.2/fpm/pool.d/www.conf
+# echo "---> $PWD"
 
-set -e
-if [ ! -e .firstime ]; then
+# set -e
+# if [ ! -e .firstime ]
     sleep 10 #i will modified it later
+<<<<<<< HEAD
     if [ ! -f wp-config.php ]; then
+=======
+    # if [ ! -f wp-config.php]
+>>>>>>> 4e284a4777700757b6e613dd72623389ccdc09f6
     # diffrence between -e -f and why : 
-    wp config create --allow-root
-        --dbhost=mariadb \
+    wp config create --allow-root \
+        --dbname="$DB_NAME" \
         --dbuser="$DB_USER" \
         --dbpass="$DB_PASSWORD" \
-        --dbname="$DB_NAME"
+        --dbhost=mariadb:3306
 
 #"$table_prefix" maybe i will change it from default state
 
@@ -26,9 +32,9 @@ if [ ! -e .firstime ]; then
         --admin_user="$WORDPRESS_ADMIN_USER" \
         --admin_password="$WORDPRESS_ADMIN_PASSWORD" \
         --admin_email="$WORDPRESS_ADMIN_EMAIL"
-    fi
-    touch .firstime
-fi
+    # fi
+    # touch .firstime
+# fi
 
 #Without exec, your script would launch php-fpm82 as a child process, 
 #and the script itself would keep running as PID 1.
@@ -36,4 +42,8 @@ fi
 #this is important for signal handling (Docker needs to send 
 #SIGTERM, SIGINT, etc. to the main process for clean shutdowns).
 
+<<<<<<< HEAD
 exec php-fpm8.2 -F
+=======
+exec /usr/sbin/php-fpm8.2 -F
+>>>>>>> 4e284a4777700757b6e613dd72623389ccdc09f6
