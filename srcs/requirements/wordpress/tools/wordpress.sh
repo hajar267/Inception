@@ -1,4 +1,12 @@
 #!/bin/bash
+
+#when i will run the container i will search for the conf file for PHP-FPM to convert the 
+#127.0.0.1:9000 to 0.0.0.0:9000 
+#i will use sed -i to replace the specific info about ip:port
+# by what i want the prototype
+#sed -i 's/old_text/new_text/' file.txt
+
+
 set -e
 if [ ! -e .firstime ]; then
     sleep 10 #i will modified it later
