@@ -10,7 +10,7 @@
 set -e
 if [ ! -e .firstime ]; then
     sleep 10 #i will modified it later
-    if [ ! -f wp-config.php]
+    if [ ! -f wp-config.php ]; then
     # diffrence between -e -f and why : 
     wp config create --allow-root
         --dbhost=mariadb \
@@ -36,4 +36,4 @@ fi
 #this is important for signal handling (Docker needs to send 
 #SIGTERM, SIGINT, etc. to the main process for clean shutdowns).
 
-exec /usr/sbin/php-fpm82 -F
+exec php-fpm8.2 -F

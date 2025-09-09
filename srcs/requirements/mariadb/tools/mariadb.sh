@@ -14,7 +14,7 @@ fi
 if [ ! -e /var/lib/mysql/.firstime ]; then
 
 
-mysql_upgrade --skip-test-db
+mysql_install_db
 # Creates the system database called mysql
 #Stores users, privileges, internal metadata, system tables.
 #Creates default accounts like root@localhost.
