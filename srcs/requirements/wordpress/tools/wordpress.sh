@@ -14,22 +14,20 @@ if [ ! -e .firstime ]; then
 
     sleep 10 #i will modified it later
     if [ ! -f wp-config.php ]; then
-    echo "heere"
-    # diffrence between -e -f and why : 
-    wp config create --allow-root \
-        --dbname="$DB_NAME" \
-        --dbuser="$DB_USER" \
-        --dbpass="$DB_PASSWORD" \
-        --dbhost=mariadb:3306
+    # echo "heere"
+    # diffrence between -e -f and why :
+    # cp wp-config-sample.php wp-config.php
+
+    # sed -i "s/database_name_here/$DB_NAME/" wp-config.php
+    # sed -i "s/username_here/$DB_USER/" wp-config.php
+    # sed -i "s/password_here/$DB_PASSWORD/" wp-config.php
+    # sed -i "s/localhost/mariadb:3306/" wp-config.php
+
+    wp config create --allow-root --dbname="$DB_NAME" --dbuser="$DB_USER" --dbpass="$DB_PASSWORD" --dbhost=mariadb
 
 #"$table_prefix" maybe i will change it from default state
 
-    wp core install --allow-root \
-        --url="$DOMAIN_NAME" \
-        --title="$WORDPRESS_TITLE" \
-        --admin_user="$WORDPRESS_ADMIN_USER" \
-        --admin_password="$WORDPRESS_ADMIN_PASSWORD" \
-        --admin_email="$WORDPRESS_ADMIN_EMAIL"
+    wp core install --allow-root --url="$DOMAIN_NAME" --title="$WORDPRESS_TITLE" --admin_user="$WORDPRESS_ADMIN_USER"  --admin_password="$WORDPRESS_ADMIN_PASSWORD"        --admin_email="$WORDPRESS_ADMIN_EMAIL"
     fi
     touch .firstime
 fi
