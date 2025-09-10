@@ -11,6 +11,8 @@ services:
       - .env
     volumes:
       - mariadb_data:/var/lib/mysql
+    networks:
+      - docker-network
 
   wordpress:
     container_name: wordpress
@@ -27,6 +29,14 @@ services:
       - wordpress_data:/var/www/html
     depends_on:
       - mariadb
+    networks:
+      - docker-network
+
 volumes:
   mariadb_data:
   wordpress_data:
+
+networks:
+  docker-network:
+    name: docker-network
+    driver: bridge

@@ -9,10 +9,12 @@
 sed -i 's|listen = /run/php/php8.2-fpm.sock|listen = 9000|' /etc/php/8.2/fpm/pool.d/www.conf
 # echo "---> $PWD"
 
-# set -e
+set -e
 if [ ! -e .firstime ]; then
+
     sleep 10 #i will modified it later
     if [ ! -f wp-config.php ]; then
+    echo "heere"
     # diffrence between -e -f and why : 
     wp config create --allow-root \
         --dbname="$DB_NAME" \
