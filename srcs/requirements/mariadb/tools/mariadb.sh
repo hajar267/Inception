@@ -31,7 +31,7 @@ mysql_install_db
 #used to start mysqld (server) &: runs it in the background
 # service mariadb start
 
-sleep 10
+sleep 5
 
 # cat << EOF | mariadb
 cat << EOF | mariadb -u root --password="${DB_ROOT_PASSWORD}"

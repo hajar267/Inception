@@ -10,7 +10,7 @@ openssl req -x509 -nodes -days 365 \
 -out /etc/ssl/certs/nginx.crt \
 -subj "/CN=${DOMAIN_NAME}" > /dev/null 2>/dev/null
 
-
+echo "$PWD"
 cat << EOF >> /etc/nginx/conf.d/wordpress.conf
 
 server {
@@ -35,6 +35,5 @@ server {
     }
 }
 EOF
-
 
 exec nginx -g 'daemon off;'
