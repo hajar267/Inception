@@ -20,8 +20,6 @@ WORKDIR /var/www/html
 
 RUN wp core download --allow-root
 
-RUN chmod o+w -R /var/www/html
-
 COPY tools/wordpress.sh /usr/local/bin
 
 RUN chmod +x /usr/local/bin/wordpress.sh

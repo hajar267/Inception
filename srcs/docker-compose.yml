@@ -34,7 +34,7 @@ services:
     networks:
       - docker-network
     ports:
-      - "8080:443"
+      - "443:443"
 
 volumes:
   mariadb_data:
