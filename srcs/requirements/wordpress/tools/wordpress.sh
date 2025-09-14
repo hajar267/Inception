@@ -23,11 +23,22 @@ if [ ! -e .firstime ]; then
     # sed -i "s/password_here/$DB_PASSWORD/" wp-config.php
     # sed -i "s/localhost/mariadb:3306/" wp-config.php
 
-    wp config create --allow-root --dbname="$DB_NAME" --dbuser="$DB_USER" --dbpass="$DB_PASSWORD" --dbhost=mariadb
+    wp config create --allow-root --dbname="$DB_NAME" 
+    --dbuser="$DB_USER" 
+    --dbpass="$DB_PASSWORD" 
+    --dbhost=mariadb
 
 #"$table_prefix" maybe i will change it from default state
 
-    wp core install --allow-root --url="$DOMAIN_NAME" --title="$WORDPRESS_TITLE" --admin_user="$WORDPRESS_ADMIN_USER"  --admin_password="$WORDPRESS_ADMIN_PASSWORD"        --admin_email="$WORDPRESS_ADMIN_EMAIL"
+    wp core install --allow-root --url="$DOMAIN_NAME"
+    --title="$WORDPRESS_TITLE"
+    --admin_user="$WORDPRESS_ADMIN_USER"
+    --admin_password="$WORDPRESS_ADMIN_PASSWORD"
+    --admin_email="$WORDPRESS_ADMIN_EMAIL"
+
+    wp user create --allow-root "$WORDPRESS_USER" "$WORDPRESS_USER_EMAIL"
+    --user_pass="$WORDPRESS_USER_PASSWORD"
+    --role=author
     fi
     touch .firstime
 fi
