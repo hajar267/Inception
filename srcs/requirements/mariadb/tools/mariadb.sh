@@ -1,5 +1,4 @@
 #!/bin/bash
-# echo "hellooooo \n"
 set -e
 if [ ! -e /etc/.firsttime ]; then
 cat << EOF >> /etc/mysql/mariadb.conf.d/50-server.cnf
@@ -31,7 +30,9 @@ mysql_install_db
 #used to start mysqld (server) &: runs it in the background
 # service mariadb start
 
-sleep 5
+# sleep 5
+
+mysqladmin ping -u root --silent --wait=30 >/dev/null 2>/dev/null
 
 # cat << EOF | mariadb
 cat << EOF | mariadb -u root --password="${DB_ROOT_PASSWORD}"

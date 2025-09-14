@@ -1,3 +1,7 @@
+setup:
+	@mkdir -p /home/$(USER)/data/mariadb
+	@mkdir -p /home/$(USER)/data/wordpress
+
 COMPOSE_FILE = srcs/docker-compose.yml
 
 all : build up

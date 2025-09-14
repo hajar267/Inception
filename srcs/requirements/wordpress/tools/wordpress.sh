@@ -12,7 +12,10 @@ sed -i 's|listen = /run/php/php8.2-fpm.sock|listen = 9000|' /etc/php/8.2/fpm/poo
 set -e
 if [ ! -e .firstime ]; then
 
-    sleep 10 #i will modified it later
+    # mysqladmin ping -h mariadb -u root -p"$DB_ROOT_PASSWORD" --wait=30
+
+    sleep 30
+
     if [ ! -f wp-config.php ]; then
     # echo "heere"
     # diffrence between -e -f and why :
@@ -28,6 +31,9 @@ if [ ! -e .firstime ]; then
 #"$table_prefix" maybe i will change it from default state
 
     wp core install --allow-root --url="$DOMAIN_NAME" --title="$WORDPRESS_TITLE" --admin_user="$WORDPRESS_ADMIN_USER"  --admin_password="$WORDPRESS_ADMIN_PASSWORD"        --admin_email="$WORDPRESS_ADMIN_EMAIL"
+    
+    wp user create --allow-root "$WORDPRESS_USER" "$WORDPRESS_USER_EMAIL" --user_pass="$WORDPRESS_USER_PASSWORD" --role=author
+
     fi
     touch .firstime
 fi
