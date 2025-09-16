@@ -11,8 +11,6 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 WORKDIR /var/www/html
 
-RUN wp core download --allow-root
-
 COPY tools/wordpress.sh /usr/local/bin
 
 RUN chmod +x /usr/local/bin/wordpress.sh

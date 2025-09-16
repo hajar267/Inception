@@ -14,7 +14,7 @@ mysqld_safe &
 mysqladmin ping -u root --silent --wait=30 >/dev/null 2>/dev/null
 cat << EOF | mariadb -u root --password="${DB_ROOT_PASSWORD}"
 CREATE DATABASE IF NOT EXISTS $DB_NAME;
-CREATE USER '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';
+CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD';
 GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';
 ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASSWORD';
 FLUSH PRIVILEGES;

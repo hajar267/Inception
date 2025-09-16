@@ -1,13 +1,13 @@
 setup:
-	@mkdir -p /home/$(USER)/data/mariadb
-	@mkdir -p /home/$(USER)/data/wordpress
+	@mkdir -p /home/hfiqar/data/mariadb
+	@mkdir -p /home/hfiqar/data/wordpress
 
 COMPOSE_FILE = srcs/docker-compose.yml
 
-all : build up
+all : setup build up
 
 build :
-	docker compose -f $(COMPOSE_FILE) build --no-cache
+	docker compose -f $(COMPOSE_FILE) build
 
 up :
 	docker compose -f $(COMPOSE_FILE) up -d
