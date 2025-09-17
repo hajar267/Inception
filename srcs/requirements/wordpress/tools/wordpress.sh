@@ -25,7 +25,7 @@ if [ ! -e .firstime ]; then
     # sed -i "s/username_here/$DB_USER/" wp-config.php
     # sed -i "s/password_here/$DB_PASSWORD/" wp-config.php
     # sed -i "s/localhost/mariadb:3306/" wp-config.php
-
+    wp core download --allow-root
     wp config create --allow-root --dbname="$DB_NAME" --dbuser="$DB_USER" --dbpass="$DB_PASSWORD" --dbhost=mariadb
 
 #"$table_prefix" maybe i will change it from default state

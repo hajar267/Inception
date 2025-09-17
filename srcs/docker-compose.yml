@@ -5,7 +5,7 @@ services:
     env_file:
       - .env
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - mariadb:/var/lib/mysql
     networks:
       - docker-network
 
@@ -16,7 +16,7 @@ services:
     env_file:
       - .env
     volumes:
-      - wordpress_data:/var/www/html
+      - wordpress:/var/www/html
     depends_on:
       - mariadb
     networks:
@@ -28,7 +28,7 @@ services:
     env_file:
       - .env
     volumes:
-      - wordpress_data:/var/www/html
+      - wordpress:/var/www/html
     depends_on:
       - wordpress
     networks:
@@ -37,8 +37,18 @@ services:
       - "443:443"
 
 volumes:
-  mariadb_data:
-  wordpress_data:
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/hfiqar/data/mariadb
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/hfiqar/data/wordpress
 
 networks:
   docker-network:

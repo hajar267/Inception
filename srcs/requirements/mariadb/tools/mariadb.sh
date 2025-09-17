@@ -1,5 +1,7 @@
 #!/bin/bash
 set -e
+#bash -c "while true; do sleep 30; done;"
+#chown -R mysql:mysql /var/lib/mysql#
 if [ ! -e /etc/.firsttime ]; then
 cat << EOF >> /etc/mysql/mariadb.conf.d/50-server.cnf
 [mysqld]
@@ -9,8 +11,9 @@ touch /etc/.firsttime
 fi
 
 if [ ! -e /var/lib/mysql/.firstime ]; then
-mysql_install_db
+mysql_install_db 
 mysqld_safe &
+
 mysqladmin ping -u root --silent --wait=30 >/dev/null 2>/dev/null
 cat << EOF | mariadb -u root --password="${DB_ROOT_PASSWORD}"
 CREATE DATABASE IF NOT EXISTS $DB_NAME;
